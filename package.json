@@ -1,0 +1,22 @@
+{
+  "name": "pw2_express_api",
+  "version": "1.0.0",
+  "description": "IUPA Programación Web 2 - TP 01 - Express Server + API REST",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grabyc/PW2_Express_API.git"
+  },
+  "author": "Gabriel Raby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grabyc/PW2_Express_API/issues"
+  },
+  "homepage": "https://github.com/grabyc/PW2_Express_API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

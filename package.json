@@ -4,6 +4,7 @@
   "description": "IUPA Programación Web 2 - TP 01 - Express Server + API REST",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/grabyc/PW2_Express_API#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

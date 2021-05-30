@@ -22,18 +22,9 @@ module.exports = (route) => {
         return;
       }
 
-      const newUser = {
-        name: req.body.name,
-        age: req.body.age,
-        created: moment(new Date()).format("YYYY-MM-DD"),
-      };
-
-      const userIndex = database.DB.findIndex(
-        (item) => item.name === newUser.name
-      );
+      const userIndex = database.add(req);
 
       if (userIndex === -1) {
-        database.add(newUser);
         res.status(201).json({
           message: "Elemento nuevo agregado.",
         });

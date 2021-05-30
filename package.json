@@ -19,6 +19,7 @@
   "homepage": "https://github.com/grabyc/PW2_Express_API#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-validator": "^6.11.1",
     "moment": "^2.29.1"
   },
   "devDependencies": {

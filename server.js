@@ -6,6 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(apiRouting);
+app.use(express.static("./public"));
 
 app.listen(PORT, () => {
   console.info(`Express Server listening on port ${PORT}.`);

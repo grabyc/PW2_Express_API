@@ -6,7 +6,7 @@ module.exports = (route) => {
     const user = database.DB.filter((item) => item.id === userId)[0];
 
     if (user) {
-      res.json(user);
+      res.status(200).json(user);
     } else {
       res.sendStatus(404);
     }

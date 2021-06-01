@@ -1,6 +1,8 @@
 const usersTable = document.getElementById("contentTable");
-
 const templateRow = document.getElementById("contentRow").content;
+const inputName = document.getElementById("inputName");
+const inputAge = document.getElementById("inputAge");
+const createUserForm = document.getElementById("createUserForm");
 
 function addRow(id, name, age) {
   const newRow = templateRow.cloneNode(true);
@@ -12,9 +14,17 @@ function addRow(id, name, age) {
   usersTable.appendChild(newRow);
 }
 
-async function api(method, endpoint) {
+async function api(method, endpoint, body = undefined) {
+  if (body) {
+    body = JSON.stringify(body);
+  }
+
   const response = await fetch(`/api/${endpoint}`, {
     method,
+    body,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   const data = await response.json();
@@ -22,8 +32,26 @@ async function api(method, endpoint) {
   return data;
 }
 
-async function initApp() {
-  const data = await api("GET", "/users");
+async function loadTable() {
+  usersTable.innerHTML = "";
 
+  const data = await api("GET", "/users");
   data.forEach(({ id, name, age }) => addRow(id, name, age));
+}
+
+async function initApp() {
+  await loadTable();
+}
+
+async function createUser() {
+  const name = inputName.value;
+  const age = inputAge.value;
+
+  await api("POST", "/users", {
+    name,
+    age,
+  });
+
+  createUserForm.reset();
+  loadTable();
 }

@@ -10,6 +10,7 @@ function addRow(id, name, age) {
   newRow.querySelector(".txtId").innerText = id;
   newRow.querySelector(".txtName").innerText = name;
   newRow.querySelector(".txtAge").innerText = age;
+  newRow.querySelector(".btnDelete").onclick = () => deleteUser(id);
 
   usersTable.appendChild(newRow);
 }
@@ -53,5 +54,11 @@ async function createUser() {
   });
 
   createUserForm.reset();
+  loadTable();
+}
+
+async function deleteUser(idUser) {
+  await api("DELETE", `/users/${idUser}`);
+
   loadTable();
 }

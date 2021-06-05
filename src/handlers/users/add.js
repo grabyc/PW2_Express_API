@@ -1,6 +1,6 @@
-const moment = require("moment");
 const database = require("../../database");
-const { body, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
+const ValidationError = require("../../validations/validationError");
 const validateName = require("../../validations/users/validateName");
 const validateAge = require("../../validations/users/validateAge");
 
@@ -9,8 +9,7 @@ module.exports = (route) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
+      throw new ValidationError(errors.array());
     }
 
     const userIndex = database.add(req);

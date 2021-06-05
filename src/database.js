@@ -54,6 +54,18 @@ const add = (req) => {
   return userIndex;
 };
 
+const update = (req, idUser) => {
+  const user = DB.find((u) => u.id === idUser);
+
+  if (user) {
+    user.name = req.body.name;
+    user.age = req.body.age;
+    user.updated = moment(new Date()).format("YYYY-MM-DD");
+  }
+
+  return user;
+};
+
 module.exports = {
   id,
   DB,
@@ -61,4 +73,5 @@ module.exports = {
   get,
   erase,
   add,
+  update,
 };

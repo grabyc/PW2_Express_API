@@ -1,8 +1,14 @@
 const usersTable = document.getElementById("contentTable");
 const templateRow = document.getElementById("contentRow").content;
+
 const inputName = document.getElementById("inputName");
 const inputAge = document.getElementById("inputAge");
+
+const createUserFormContent = document.getElementById("form-create");
 const createUserForm = document.getElementById("createUserForm");
+
+const updateUserFormContent = document.getElementById("form-update");
+const updateUserForm = document.getElementById("updateUserForm");
 
 function addRow(id, name, age) {
   const newRow = templateRow.cloneNode(true);
@@ -10,6 +16,7 @@ function addRow(id, name, age) {
   newRow.querySelector(".txtId").innerText = id;
   newRow.querySelector(".txtName").innerText = name;
   newRow.querySelector(".txtAge").innerText = age;
+  newRow.querySelector(".btnUpdate").onclick = () => updateUser(id);
   newRow.querySelector(".btnDelete").onclick = () => deleteUser(id);
 
   usersTable.appendChild(newRow);
@@ -54,6 +61,36 @@ async function createUser() {
   });
 
   createUserForm.reset();
+  loadTable();
+}
+
+async function updateUser(idUser) {
+  createUserFormContent.style.display = "none";
+  updateUserFormContent.style.display = "";
+
+  const user = await api("GET", `/users/${idUser}`);
+
+  updateUserFormContent.querySelector("#user-id").innerText = user.id;
+  updateUserForm.querySelector("#inputName").value = user.name;
+  updateUserForm.querySelector("#inputAge").value = user.age;
+}
+
+async function cancelUser() {
+  createUserFormContent.style.display = "";
+  updateUserFormContent.style.display = "none";
+}
+
+async function saveUpdatedUser() {
+  const idUser = updateUserFormContent.querySelector("#user-id").innerText;
+  const name = updateUserForm.querySelector("#inputName").value;
+  const age = updateUserForm.querySelector("#inputAge").value;
+
+  await api("PUT", `/users/${idUser}`, {
+    name,
+    age,
+  });
+
+  cancelUser();
   loadTable();
 }
 

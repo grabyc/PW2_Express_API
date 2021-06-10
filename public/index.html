@@ -25,14 +25,16 @@
             <div class="card" id="form-create">
                 <div class="card-header">Crear Usuario</div>
                 <div class="card-body">
-                    <form id="createUserForm">
+                    <form id="createUserForm" novalidate>
                         <div class="form-group">
-                            <label for="inputName">Nombre</label>
-                            <input class="form-control" type="text" id="inputName" placeholder="Nombre">
+                            <label for="inputName" class="form-label">Nombre</label>
+                            <input class="form-control" type="text" id="inputName" placeholder="Nombre" required>
+                            <div id="createNameHelp" class=""></div>
                         </div>
                         <div class="form-group">
-                            <label for="inputAge">Edad</label>
-                            <input class="form-control" type="number" id="inputAge" placeholder="Edad" min="18" max="120">
+                            <label for="inputAge" class="form-label">Edad</label>
+                            <input class="form-control" type="number" id="inputAge" placeholder="Edad" min="18" max="120" required>
+                            <div id="createAgeHelp" class=""></div>
                         </div>
                         <button type="button" onclick="createUser()" class="btn btn-success">Crear</button>
 
@@ -46,12 +48,14 @@
                         <div class="form-group">
                             <label for="inputName">Nombre</label>
                             <input class="form-control" type="text" id="inputName" placeholder="Nombre">
+                            <div id="updateNameHelp" class=""></div>
                         </div>
                         <div class="form-group">
                             <label for="inputAge">Edad</label>
                             <input class="form-control" type="number" id="inputAge" placeholder="Edad" min="18" max="120">
+                            <div id="updateAgeHelp" class=""></div>
                         </div>
-                        <button type="button" onclick="saveUpdatedUser()" class="btn btn-success">Modificar</button>
+                        <button type="button" onclick="updateUser()" class="btn btn-success">Modificar</button>
                         <button type="button" onclick="cancelUser()" class="btn btn-warning">Cancelar</button>
 
                     </form>

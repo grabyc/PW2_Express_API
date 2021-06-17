@@ -6,6 +6,8 @@ const DB = [
     id: id,
     name: "Juan",
     age: 30,
+    username: "Juan",
+    password: "johnny",
     created: moment(new Date()).format("YYYY-MM-DD"),
     updated: null,
   },
@@ -66,6 +68,16 @@ const update = (req, idUser) => {
   return user;
 };
 
+const search = (query) => {
+  let results = DB;
+
+  for (const [key, value] of Object.entries(query)) {
+    results = results.filter((record) => record[key] === value);
+  }
+
+  return results;
+};
+
 module.exports = {
   id,
   DB,
@@ -74,4 +86,5 @@ module.exports = {
   erase,
   add,
   update,
+  search,
 };

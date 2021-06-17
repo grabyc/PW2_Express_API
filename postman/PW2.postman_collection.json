@@ -6,133 +6,222 @@
 	},
 	"item": [
 		{
-			"name": "Listar",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base}}/api/users",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base}}/api/users/:userId",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"users",
-						":userId"
-					],
-					"variable": [
-						{
-							"key": "userId",
-							"value": "2"
+			"name": "Authenticated",
+			"item": [
+				{
+					"name": "Obtener",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/users/:userId",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{base}}/api/users/:userId",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"users",
-						":userId"
-					],
-					"variable": [
-						{
-							"key": "userId",
-							"value": "2"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/users",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "filterName",
+									"value": "a",
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Agregar",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":2,\n    \"name\": \"Pedro\",\n    \"age\": 25\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/users/:userId",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
+							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Marcos\",\n    \"age\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/users",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pedro\",\n    \"age\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/users/:userId",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
 					}
 				},
-				"url": {
-					"raw": "{{base}}/api/users",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"users"
-					]
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Actualizar",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Pedro\",\n    \"age\": 25\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base}}/api/users/:userId",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"users",
-						":userId"
-					],
-					"variable": [
+			"name": "Public",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
 						{
-							"key": "userId",
-							"value": "1"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Save login token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"token\", jsonData.accessToken);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Juan\",\n    \"password\": \"johnny\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
@@ -159,6 +248,10 @@
 		{
 			"key": "base",
 			"value": "http://localhost:3000"
+		},
+		{
+			"key": "token",
+			"value": ""
 		}
 	]
 }

@@ -19,10 +19,12 @@ async function initApp() {
 }
 
 async function loadTable() {
-  usersTable.innerHTML = "";
+  if (localStorage.getItem("token")) {
+    usersTable.innerHTML = "";
 
-  const data = await api("GET", "/users");
-  data.forEach(({ id, name, age }) => addRow(id, name, age));
+    const data = await api("GET", "/users");
+    data.forEach(({ id, name, age }) => addRow(id, name, age));
+  }
 }
 
 function addRow(id, name, age) {
@@ -146,12 +148,19 @@ async function api(method, endpoint, body = undefined) {
     body = JSON.stringify(body);
   }
 
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  const token = localStorage.getItem("token");
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
   const response = await fetch(`/api/${endpoint}`, {
     method,
     body,
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
   });
 
   const data = await response.json();
